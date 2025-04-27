@@ -1,0 +1,26 @@
+@page {
+  margin: 0;
+}
+
+
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #area-imprimir, #area-imprimir * {
+    visibility: visible;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #area-imprimir {
+    display: flex;
+    flex-direction: column;
+    margin-top: -700px;/* Ajuste para compensar margen superior del navegador al imprimir */
+    padding: 0;
+  }
+}
