@@ -46,8 +46,10 @@ const TablaFacturas = ({ datos }) => {
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Factura</TableCell>
+                                        <TableCell>Facturacion</TableCell>
                                         <TableCell>Vencimiento</TableCell>
                                         <TableCell>Monto</TableCell>
+                                        <TableCell>Comentario</TableCell>
                                         <TableCell>Observación</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -55,6 +57,7 @@ const TablaFacturas = ({ datos }) => {
                                     {facturas.map((f, index) => (
                                         <TableRow key={index}>
                                             <TableCell>{f.factura}</TableCell>
+                                            <TableCell>{f.facturacion}</TableCell>
                                             <TableCell>{f.vencimiento}</TableCell>
                                             <TableCell>${parseFloat(f.monto).toFixed(2)}</TableCell>
                                             <TableCell></TableCell>
