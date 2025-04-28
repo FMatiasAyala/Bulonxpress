@@ -59,8 +59,8 @@ const TablaFacturas = ({ datos }) => {
                                             <TableCell>{f.factura}</TableCell>
                                             <TableCell>{f.facturacion}</TableCell>
                                             <TableCell>{f.vencimiento}</TableCell>
-                                            <TableCell>{f.comentario}</TableCell>
                                             <TableCell>${parseFloat(f.monto).toFixed(2)}</TableCell>
+                                            <TableCell>{f.comentario}</TableCell>
                                             <TableCell></TableCell>
                                         </TableRow>
                                     ))}
