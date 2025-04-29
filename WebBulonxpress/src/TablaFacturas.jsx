@@ -39,7 +39,7 @@ const TablaFacturas = ({ datos }) => {
                 const total = facturas.reduce((acc, f) => acc + parseFloat(f.monto || 0), 0);
 
                 return (
-                    <div key={cliente} style={{ marginBottom: 24 }}>
+                    <div key={cliente} className="cliente-section" style={{ marginBottom: 24 }}>
                         <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 'Bold' }}>{cliente}</Typography>
                         <TableContainer component={Paper}>
                             <Table size="small">

@@ -1,25 +1,28 @@
 @page {
-  margin: 0;
+  margin: 20mm;
 }
 
-
 @media print {
-  body {
-    margin: 0;
-    padding: 0;
+  body * {
+    visibility: hidden;
   }
 
   #area-imprimir, #area-imprimir * {
     visibility: visible;
   }
 
-  body * {
-    visibility: hidden;
+  #area-imprimir {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
   }
 
-  #area-imprimir {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+  .cliente-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 12px;
   }
 }
