@@ -20,7 +20,6 @@
   #area-imprimir {
     display: flex;
     flex-direction: column;
-    margin-top: -700px;/* Ajuste para compensar margen superior del navegador al imprimir */
     padding: 0;
   }
 }
