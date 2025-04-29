@@ -42,31 +42,31 @@ const TablaFacturas = ({ datos }) => {
                     <div key={cliente} className="cliente-section" style={{ marginBottom: 24 }}>
                         <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: 'Bold' }}>{cliente}</Typography>
                         <TableContainer component={Paper}>
-                            <Table size="small">
+                            <Table size="small" sx={{ tableLayout: 'fixed', width: '100%' }}>
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>Factura</TableCell>
+                                        <TableCell >Factura</TableCell>
                                         <TableCell>Facturacion</TableCell>
                                         <TableCell>Vencimiento</TableCell>
-                                        <TableCell>Monto</TableCell>
                                         <TableCell>Comentario</TableCell>
+                                        <TableCell>Monto</TableCell>
                                         <TableCell>Observación</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     {facturas.map((f, index) => (
                                         <TableRow key={index}>
-                                            <TableCell>{f.factura}</TableCell>
-                                            <TableCell>{f.facturacion}</TableCell>
-                                            <TableCell>{f.vencimiento}</TableCell>
-                                            <TableCell>${parseFloat(f.monto).toFixed(2)}</TableCell>
-                                            <TableCell>{f.comentario}</TableCell>
-                                            <TableCell></TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>{f.factura}</TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>{f.facturacion}</TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>{f.vencimiento}</TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>{f.comentario}</TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>${parseFloat(f.monto).toFixed(2)}</TableCell>
+                                            <TableCell sx={{ wordBreak: 'break-word', whiteSpace: 'normal' }}></TableCell>
                                         </TableRow>
                                     ))}
                                     <TableRow>
-                                        <TableCell colSpan={2} />
-                                        <TableCell align="right" sx={{ fontWeight: 'bold' }}>
+                                        <TableCell colSpan={4} />
+                                        <TableCell align="right" sx={{ fontWeight: 'bold', wordBreak: 'break-word', whiteSpace: 'normal' }}>
                                             Total: ${total.toFixed(2)}
                                         </TableCell>
                                         <TableCell />
