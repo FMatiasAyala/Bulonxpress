@@ -1,6 +1,6 @@
 import { Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box, Divider } from '@mui/material';
 
-const TablaFacturas = ({ datos }) => {
+const TablaCobranza = ({ datos }) => {
     const agrupados = datos.reduce((acc, item) => {
         acc[item.cliente] = acc[item.cliente] || [];
         acc[item.cliente].push(item);
@@ -81,4 +81,4 @@ const TablaFacturas = ({ datos }) => {
     );
 };
 
-export default TablaFacturas;
+export default TablaCobranza;

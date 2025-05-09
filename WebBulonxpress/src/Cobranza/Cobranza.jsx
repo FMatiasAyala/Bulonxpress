@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Divider } from "@mui/material";
 import FormularioCarga from "./FormularioCarga"
-import TablaFacturas from "./TablaFacturas";
+import TablaCobranza from "./TablaCobranza";
 import BotonImprimir from "./BotonImprimir";
 import "./Cobranza.css";
 
@@ -14,7 +14,7 @@ const Cobranza = ({ datos, agregarDato }) => {
             </Typography>
             <FormularioCarga onAgregar={agregarDato} />
             <Divider />
-            <TablaFacturas datos={datos} />
+            <TablaCobranza datos={datos} />
             <BotonImprimir />
         </>
     );
