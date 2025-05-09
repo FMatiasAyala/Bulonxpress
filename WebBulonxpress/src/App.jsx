@@ -1,8 +1,6 @@
 // src/App.jsx
 import { useState } from "react";
 import {
-  Typography,
-  Divider,
   Container,
   AppBar,
   Toolbar,
@@ -13,44 +11,14 @@ import {
   Routes,
   Route,
   Link,
-  useNavigate,
 } from "react-router-dom";
-import FormularioCarga from "./Cobranza/FormularioCarga";
-import TablaFacturas from "./Cobranza/TablaFacturas";
-import BotonImprimir from "./Cobranza/BotonImprimir";
 import FacturaView from "./Factura/FacturaView";
 import FormularioFactura from "./Factura/FormularioFactura";
-import FacturaImprimible from "./Factura/FacturaImprimible";
-import "./Cobranza/Cobranza.css";
+import Cobranza from "./Cobranza/Cobranza";
+import Home from "./Home";
 import "./App.css";
 
-function Home({ datos, agregarDato }) {
-  const navigate = useNavigate();
 
-  const handleVerFactura = () => {
-    navigate("/facturas", { state: { datos } });
-  };
-
-  return (
-    <>
-      <Typography variant="h4" gutterBottom>
-        Cobranzas
-      </Typography>
-      <FormularioCarga onAgregar={agregarDato} />
-      <Divider />
-      <TablaFacturas datos={datos} />
-      <BotonImprimir />
-      <Button
-        variant="outlined"
-        color="primary"
-        onClick={handleVerFactura}
-        sx={{ mt: 2 }}
-      >
-        Ver/Imprimir Factura
-      </Button>
-    </>
-  );
-}
 
 
 function App() {
@@ -68,10 +36,13 @@ function App() {
 
   return (
     <Router>
-      <AppBar position="static">
+      <AppBar position="static" color="info">
         <Toolbar>
           <Button color="inherit" component={Link} to="/">
             Inicio
+          </Button>
+          <Button color="inherit" component={Link} to="/cobranza">
+            Planilla de Cobranzas
           </Button>
           <Button color="inherit" component={Link} to="/facturas">
             Facturas
@@ -86,10 +57,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home datos={datos} agregarDato={agregarDato} />}
+            element={<Home/>}
+          />
+          <Route
+            path="/cobranza"
+            element={<Cobranza datos={datos} agregarDato={agregarDato} />}
           />
           <Route path="/facturas" element={<FacturaView factura={facturas[0]} />} />
-
           <Route
             path="/crear-factura"
             element={

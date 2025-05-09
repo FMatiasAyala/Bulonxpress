@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Button, TextField, Box } from "@mui/material";
+import { Button, TextField, Box, Typography, Grid } from "@mui/material";
 
 const FormularioFactura = ({ onAgregar }) => {
   const [cliente, setCliente] = useState({
     nombre: '',
+    apellido: '',
     domicilio: '',
     cuit: '',
-    fecha:'',
+    fecha: '',
   });
   const [items, setItems] = useState([]);
   const [concepto, setConcepto] = useState('');
@@ -49,83 +50,97 @@ const FormularioFactura = ({ onAgregar }) => {
     console.log(facturaData)
 
     // Limpiar todo después de enviar
-    setCliente({ nombre: '', domicilio: '', cuit: '', fecha:'' });
+    setCliente({ nombre: '',apellido:'', domicilio: '', cuit: '', fecha: '' });
     setItems([]);
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mb: 2 }}>
-      <TextField
-        label="Cliente Nombre"
-        value={cliente.nombre}
-        onChange={(e) => setCliente({ ...cliente, nombre: e.target.value })}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="Domicilio"
-        value={cliente.domicilio}
-        onChange={(e) => setCliente({ ...cliente, domicilio: e.target.value })}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="CUIT"
-        value={cliente.cuit}
-        onChange={(e) => setCliente({ ...cliente, cuit: e.target.value })}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="Fecha"
-        type="date"
-        value={cliente.fecha}
-        onChange={(e) => setCliente({...cliente, fecha: e.target.value})}
-        fullWidth
-        sx={{ mb: 2 }}
-        InputLabelProps={{
-          shrink: true, // Esto permite que el label no se superponga
-        }}
-      />
-      {/* Formulario para agregar ítems */}
-      <TextField
-        label="Concepto"
-        value={concepto}
-        onChange={(e) => setConcepto(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="Cantidad"
-        type="number"
-        value={cantidad}
-        onChange={(e) => setCantidad(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="Comentario"
-        value={comentario}
-        onChange={(e) => setComentario(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
-      <TextField
-        label="Precio Unitario"
-        type="number"
-        value={precioUnitario}
-        onChange={(e) => setPrecioUnitario(e.target.value)}
-        fullWidth
-        sx={{ mb: 2 }}
-      />
+    <Box component="form" onSubmit={handleSubmit} sx={{ flexGrow: 1 }}>
+      <Box sx={{ mt: 2 }}>
+        <Typography variant="h4" textAlign={'center'}> Cargar Factura </Typography>
+      </Box>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <Typography variant="subtitle1" textAlign={'center'}> Datos cliente </Typography>
+          <TextField
+            label="Nombre"
+            value={cliente.nombre}
+            onChange={(e) => setCliente({ ...cliente, nombre: e.target.value })}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Apellido"
+            value={cliente.apellido}
+            onChange={(e) => setCliente({ ...cliente, apellido: e.target.value })}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Domicilio"
+            value={cliente.domicilio}
+            onChange={(e) => setCliente({ ...cliente, domicilio: e.target.value })}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="CUIT"
+            value={cliente.cuit}
+            onChange={(e) => setCliente({ ...cliente, cuit: e.target.value })}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Typography variant="subtitle1" textAlign={'center'}> Datos factura </Typography>
+          <TextField
+            label="Fecha"
+            type="date"
+            value={cliente.fecha}
+            onChange={(e) => setCliente({ ...cliente, fecha: e.target.value })}
+            fullWidth
+            sx={{ mb: 2 }}
+            InputLabelProps={{
+              shrink: true, // Esto permite que el label no se superponga
+            }}
+          />
+          <TextField
+            label="Concepto"
+            value={concepto}
+            onChange={(e) => setConcepto(e.target.value)}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Cantidad"
+            type="number"
+            value={cantidad}
+            onChange={(e) => setCantidad(e.target.value)}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Comentario"
+            value={comentario}
+            onChange={(e) => setComentario(e.target.value)}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            label="Precio Unitario"
+            type="number"
+            value={precioUnitario}
+            onChange={(e) => setPrecioUnitario(e.target.value)}
+            fullWidth
+            sx={{ mb: 2 }}
+          />
 
-      <Button onClick={agregarItem} variant="contained" sx={{ mb: 2 }}>
-        Agregar Ítem
-      </Button>
-
-      <Button type="submit" variant="contained">
-        Generar Factura
-      </Button>
+        </Grid>
+      </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mt: 2 }}>
+        <Button onClick={agregarItem} variant="contained">Agregar Ítem</Button>
+        <Button type="submit" variant="contained">Generar Factura</Button>
+      </Box>
     </Box>
   );
 };

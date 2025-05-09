@@ -6,7 +6,12 @@ const FacturaImprimible = ({ cliente, items }) => {
   if (!cliente || !items || items.length === 0) {
     return <div>No hay datos disponibles para la factura.</div>;
   }
-
+  const dia = new Date();
+  let diaActual = dia.toLocaleDateString('es-AR', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
   const subtotal = items.reduce((acc, item) => acc + (Number(item.precioUnitario)), 0);
   const total = subtotal;
 
@@ -17,6 +22,7 @@ const FacturaImprimible = ({ cliente, items }) => {
         <Box sx={{ ml: 2 }}>
           <Typography variant="subtitle2">FABIO DISTRIBUCIONES</Typography>
           <Typography variant="subtitle2">362 486-3331</Typography>
+          <Typography variant="subtitle2">{diaActual}</Typography>
         </Box>
       </Box>
 
