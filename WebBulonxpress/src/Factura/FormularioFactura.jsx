@@ -6,42 +6,41 @@ const FormularioFactura = ({ onAgregar }) => {
     nombre: '',
     domicilio: '',
     cuit: '',
+    fecha:'',
   });
-  const [factura, setFactura] = useState('');
   const [items, setItems] = useState([]);
   const [concepto, setConcepto] = useState('');
-  const [monto, setMonto] = useState('');
+  const [cantidad, setCantidad] = useState('');
   const [comentario, setComentario] = useState('');
   const [precioUnitario, setPrecioUnitario] = useState('');
 
   const agregarItem = () => {
-    if (!concepto || !monto || !precioUnitario) {
+    if (!concepto || !cantidad || !precioUnitario) {
       alert("Por favor, ingrese todos los campos para el ítem.");
       return;
     }
 
     const nuevoItem = {
       concepto,
-      monto: parseFloat(monto),
+      cantidad,
       comentario,
       precioUnitario: parseFloat(precioUnitario),
     };
-    
+
     setItems([...items, nuevoItem]);
-    
+
     // Limpiar campos después de agregar
     setConcepto('');
-    setMonto('');
+    setCantidad('');
     setComentario('');
     setPrecioUnitario('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const facturaData = {
       cliente,
-      factura,
       items,
     };
 
@@ -50,8 +49,7 @@ const FormularioFactura = ({ onAgregar }) => {
     console.log(facturaData)
 
     // Limpiar todo después de enviar
-    setCliente({ nombre: '', domicilio: '', cuit: '' });
-    setFactura('');
+    setCliente({ nombre: '', domicilio: '', cuit: '', fecha:'' });
     setItems([]);
   };
 
@@ -79,13 +77,16 @@ const FormularioFactura = ({ onAgregar }) => {
         sx={{ mb: 2 }}
       />
       <TextField
-        label="Factura"
-        value={factura}
-        onChange={(e) => setFactura(e.target.value)}
+        label="Fecha"
+        type="date"
+        value={cliente.fecha}
+        onChange={(e) => setCliente({...cliente, fecha: e.target.value})}
         fullWidth
         sx={{ mb: 2 }}
+        InputLabelProps={{
+          shrink: true, // Esto permite que el label no se superponga
+        }}
       />
-      
       {/* Formulario para agregar ítems */}
       <TextField
         label="Concepto"
@@ -95,10 +96,10 @@ const FormularioFactura = ({ onAgregar }) => {
         sx={{ mb: 2 }}
       />
       <TextField
-        label="Monto"
+        label="Cantidad"
         type="number"
-        value={monto}
-        onChange={(e) => setMonto(e.target.value)}
+        value={cantidad}
+        onChange={(e) => setCantidad(e.target.value)}
         fullWidth
         sx={{ mb: 2 }}
       />
@@ -117,7 +118,7 @@ const FormularioFactura = ({ onAgregar }) => {
         fullWidth
         sx={{ mb: 2 }}
       />
-      
+
       <Button onClick={agregarItem} variant="contained" sx={{ mb: 2 }}>
         Agregar Ítem
       </Button>

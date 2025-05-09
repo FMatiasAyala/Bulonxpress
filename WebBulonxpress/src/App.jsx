@@ -20,6 +20,7 @@ import TablaFacturas from "./Cobranza/TablaFacturas";
 import BotonImprimir from "./Cobranza/BotonImprimir";
 import FacturaView from "./Factura/FacturaView";
 import FormularioFactura from "./Factura/FormularioFactura";
+import FacturaImprimible from "./Factura/FacturaImprimible";
 import "./Cobranza/Cobranza.css";
 import "./App.css";
 
@@ -50,6 +51,7 @@ function Home({ datos, agregarDato }) {
     </>
   );
 }
+
 
 function App() {
   const [datos, setDatos] = useState([]);
@@ -86,7 +88,8 @@ function App() {
             path="/"
             element={<Home datos={datos} agregarDato={agregarDato} />}
           />
-          <Route path="/facturas" element={<FacturaView factura={facturas}/>} />
+          <Route path="/facturas" element={<FacturaView factura={facturas[0]} />} />
+
           <Route
             path="/crear-factura"
             element={

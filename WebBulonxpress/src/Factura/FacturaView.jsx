@@ -2,22 +2,21 @@ import React from 'react';
 import FacturaImprimible from './FacturaImprimible';
 import { Button } from '@mui/material';
 
-const FacturaView = ({ facturas }) => {
-  // Asegúrate de que facturas tiene datos
-  if (!facturas || facturas.length === 0) {
-    return <div>No se encontraron facturas.</div>;
+const FacturaView = ({ factura }) => {
+  if (!factura || !factura.cliente || !factura.items) {
+    return <div>No se encontró la factura.</div>;
   }
 
-
   const cliente = {
-    nombre: facturas.cliente?.nombre || 'Cliente Desconocido',
-    domicilio: facturas.cliente?.domicilio || 'Domicilio Desconocido',
-    cuit: facturas.cliente?.cuit || 'CUIT Desconocido',
+    nombre: factura.cliente.nombre || 'Cliente Desconocido',
+    domicilio: factura.cliente.domicilio || 'Domicilio Desconocido',
+    cuit: factura.cliente.cuit || 'CUIT Desconocido',
+    fecha: factura.cliente.fecha || '',
   };
 
-  const items = facturas.items?.map(item => ({
+  const items = factura.items.map(item => ({
     descripcion: item.concepto,
-    cantidad: 1, // Ajusta según lo necesario
+    cantidad: item.cantidad,
     precioUnitario: item.precioUnitario,
     comentario: item.comentario,
   }));
