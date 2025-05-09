@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, TextField, Box, Typography, Grid } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const FormularioFactura = ({ onAgregar }) => {
   const [cliente, setCliente] = useState({
@@ -14,6 +15,7 @@ const FormularioFactura = ({ onAgregar }) => {
   const [cantidad, setCantidad] = useState('');
   const [comentario, setComentario] = useState('');
   const [precioUnitario, setPrecioUnitario] = useState('');
+  const navigate = useNavigate();
 
   const agregarItem = () => {
     if (!concepto || !cantidad || !precioUnitario) {
@@ -50,8 +52,9 @@ const FormularioFactura = ({ onAgregar }) => {
     console.log(facturaData)
 
     // Limpiar todo después de enviar
-    setCliente({ nombre: '',apellido:'', domicilio: '', cuit: '', fecha: '' });
+    setCliente({ nombre: '', apellido: '', domicilio: '', cuit: '', fecha: '' });
     setItems([]);
+    navigate('/facturas')
   };
 
   return (
