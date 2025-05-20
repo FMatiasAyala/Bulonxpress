@@ -6,14 +6,20 @@ const FacturaImprimible = ({ cliente, items }) => {
   if (!cliente || !items || items.length === 0) {
     return <div>No hay datos disponibles para la factura.</div>;
   }
+
   const dia = new Date();
   let diaActual = dia.toLocaleDateString('es-AR', {
     day: '2-digit',
     month: 'short',
     year: 'numeric'
   });
-  const subtotal = items.reduce((acc, item) => acc + (Number(item.precioUnitario)), 0);
-  const total = subtotal;
+
+  // ✅ Cálculo correcto del total sumando subtotales por cada ítem
+  const total = items.reduce((acc, item) => {
+    const cantidad = parseFloat(item.cantidad) || 0;
+    const precio = parseFloat(item.precioUnitario) || 0;
+    return acc + cantidad * precio;
+  }, 0);
 
   return (
     <div id="area-imprimir">
@@ -33,7 +39,6 @@ const FacturaImprimible = ({ cliente, items }) => {
         <Typography><strong>Cliente:</strong> {cliente.nombre}</Typography>
         <Typography><strong>Domicilio:</strong> {cliente.domicilio}</Typography>
         <Typography><strong>Fecha:</strong> {cliente.fecha}</Typography>
-
       </Box>
 
       <Divider />
@@ -44,17 +49,25 @@ const FacturaImprimible = ({ cliente, items }) => {
           <TableRow>
             <TableCell>Descripción</TableCell>
             <TableCell>Cantidad</TableCell>
-            <TableCell>Total</TableCell>
+            <TableCell>P.Unitario</TableCell>
+            <TableCell>Subtotal</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell>{item.descripcion}</TableCell>
-              <TableCell>{item.cantidad}</TableCell>
-              <TableCell>${item.precioUnitario.toFixed(2)}</TableCell>
-            </TableRow>
-          ))}
+          {items.map((item, index) => {
+            const cantidad = parseFloat(item.cantidad) || 0;
+            const precio = parseFloat(item.precioUnitario) || 0;
+            const subtotal = cantidad * precio;
+
+            return (
+              <TableRow key={index}>
+                <TableCell>{item.descripcion}</TableCell>
+                <TableCell>{cantidad}</TableCell>
+                <TableCell>${precio.toFixed(2)}</TableCell>
+                <TableCell>${subtotal.toFixed(2)}</TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
 
