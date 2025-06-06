@@ -1,0 +1,30 @@
+/* src/Factura/FacturaImprimible.css */
+
+#area-imprimir-presupuesto {
+  padding: 24px;
+  font-family: 'Arial', sans-serif;
+  background-color: white;
+  color: black;
+}
+
+.factura-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Solo se imprime el contenido del área de factura */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #area-imprimir-presupuesto,  #area-imprimir-presupuesto  * {
+    visibility: visible;
+  }
+  #area-imprimir-presupuesto  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}

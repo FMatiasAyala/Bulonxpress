@@ -15,6 +15,7 @@ import {
 import FacturaView from "./Factura/FacturaView";
 import FormularioFactura from "./Factura/FormularioFactura";
 import Cobranza from "./Cobranza/Cobranza";
+import PresupuestoFormulario from "./Presupuesto/PresupuestoFormulario";
 import Home from "./Home";
 import "./App.css";
 
@@ -24,7 +25,7 @@ import "./App.css";
 function App() {
   const [datos, setDatos] = useState([]);
   const [facturas, setFacturas] = useState([]);
-  
+
   const agregarFactura = (nuevaFactura) => {
     setFacturas((prev) => [...prev, nuevaFactura]);
   };
@@ -50,6 +51,9 @@ function App() {
           <Button color="inherit" component={Link} to="/crear-factura">
             Nueva Factura
           </Button>
+          <Button color="inherit" component={Link} to="/presupuesto">
+            Presupuesto
+          </Button>
         </Toolbar>
       </AppBar>
 
@@ -57,7 +61,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home/>}
+            element={<Home />}
           />
           <Route
             path="/cobranza"
@@ -72,6 +76,7 @@ function App() {
               />
             }
           />
+          <Route path="/presupuesto" element={<PresupuestoFormulario />} />
         </Routes>
       </Container>
     </Router>
