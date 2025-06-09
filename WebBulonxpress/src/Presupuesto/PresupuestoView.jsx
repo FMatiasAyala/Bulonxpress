@@ -28,6 +28,9 @@ const PresupuestoView = ({ presupuesto }) => {
 
             <div id="area-imprimir-presupuesto" style={{ padding: "1rem", background: "#fff" }}>
                 {/* Encabezado */}
+                <Typography variant="h5" align="center" gutterBottom>
+                    PRESUPUESTO
+                </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                     <img src="/FD-Logo.png" alt="Logo" className="factura-logo" style={{ width: 100, height: "auto" }} />
                     <Box sx={{ ml: 2 }}>
