@@ -45,7 +45,8 @@ const PresupuestoView = ({ presupuesto }) => {
 
                 {/* Datos del Cliente */}
                 <Box sx={{ my: 2 }}>
-                    <Typography><strong>Cliente:</strong> {cliente.nombre}</Typography>
+                    <Typography><strong>Cliente:</strong>{cliente.apellido}, {cliente.nombre}</Typography>
+                    <Typography><strong>CUIT:</strong> {cliente.cuit}</Typography>
                     <Typography><strong>Domicilio:</strong> {cliente.domicilio}</Typography>
                     <Typography><strong>Fecha:</strong> {cliente.fecha}</Typography>
                 </Box>
